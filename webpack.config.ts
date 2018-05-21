@@ -1,6 +1,8 @@
 'use strict';
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
     context: path.join(__dirname,'src'),
@@ -33,7 +35,23 @@ module.exports = {
                 }, {
                     loader: "css-loader" // translates CSS into CommonJS
                 }, {
+                    loader: 'postcss-loader', // Run post css actions
+                    options: {
+                      plugins: function () { // post css plugins, can be exported to postcss.config.js
+                        return [
+                          require('precss'),
+                          require('autoprefixer')
+                        ];
+                      }
+                    }
+                }, {
                     loader: "sass-loader" // compiles Sass to CSS
+                }]
+            },
+            {
+                test: /\.(png|jpg)/,
+                use: [{
+                    loader: 'url-loader?limit=8192'
                 }]
             }
         ],
@@ -42,12 +60,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'React-start',
             template: 'index.html'
-        })
+        }), 
     ],
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
         port: 9000
     },
-    watch: false
+    watch: true
 }

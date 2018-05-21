@@ -1,10 +1,14 @@
 import * as ReactDOM from "react-dom";
-import {Helloer} from "./components/Helloer/Helloer";
-import * as React from 'react'
+import * as React from 'react';
+import 'bootstrap';
+import './styles/main.scss';
+import { MovieSearch } from "./components/MovieSearch/MovieSearch";
 
 console.log('Starting with Webpack 4');
 
 ReactDOM.render(
-    <Helloer />,
+    <React.Fragment>
+        <MovieSearch />
+    </React.Fragment>,
     document.getElementById('app')
 )
