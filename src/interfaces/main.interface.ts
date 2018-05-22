@@ -10,6 +10,7 @@ export interface MovieItem {
     budget:	        number;
     revenue:	    number;
     runtime:	    number;
+    genres:         string[];
 }
 
 export interface MovieCollection {

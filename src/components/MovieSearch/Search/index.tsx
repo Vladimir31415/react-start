@@ -1,7 +1,11 @@
 import React from "react";
 import './styles.scss';
 
-export class Search extends React.Component {
+interface ComponentProps {
+    
+}
+
+export class Search extends React.Component<ComponentProps, any> {
     render() {
         return (
             <React.Fragment>

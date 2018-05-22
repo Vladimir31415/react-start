@@ -1,50 +1,42 @@
-import React from "react";
+import React, { Component } from "react";
 import "./styles.scss";
 import { MovieCard } from "../MovieCard";
 import { MovieCollection, MovieItem } from "../../../interfaces/main.interface";
 
-export class MovieSearchResults extends React.Component {
-    public columns = 3; 
-    public collection: MovieCollection;
-    public promise$: Promise<MovieCollection>;
-    constructor(props:any) {
-        super(props);
-        this.requestData();
-    }
+interface ComponentProps {
+    itemRows: Array<MovieItem[]>
+}
 
-    public requestData() {
-        fetch('http://react-cdp-api.herokuapp.com/movies')
-            .then((res: Response) => res.json())
-            .then((collection: MovieCollection) => {
-                console.log(this.divideIntoColumns(collection.data, this.columns))
-                // this.setState({collection: data})
-            })
+export class MovieSearchResults extends React.Component<ComponentProps, any> {
+
+    constructor(props) {
+        super(props);
     }
 
     public render() {
+        const movieCards = this.props.itemRows.map((row, key) => {
+            const col1 = row[0] ? <div className="col-sm-4">
+                <MovieCard item={row[0]}/>
+            </div> : null;
+            const col2 = row[1] ? <div className="col-sm-4">
+                <MovieCard item={row[1]}/>
+            </div> : null;
+            const col3 = row[2] ? <div className="col-sm-4">
+                <MovieCard item={row[2]}/>
+            </div> : null;
+            return (
+                <div className="row mb-3" key={key}>
+                    {col1}{col2}{col3}
+                </div>)
+        })
         return (
             <React.Fragment>
                 <section className="search-results p-4">
                     <div className="container">
-                        {
-                            <div className="row">
-                                <div className="col-sm-4">
-                                    <MovieCard/>
-                                </div>
-                            </div>
-                        }
+                        {movieCards}
                     </div>
                 </section>
             </React.Fragment>
         )
-    }
-
-    private divideIntoColumns(data: MovieItem[], cols: number) {
-        let arData = [];
-        const rows = data.length / cols;
-        for(let row = 1; row <= rows; row=row+cols-1) {
-            arData.push(data.filter((val, ind) => ind < row*cols));
-        } 
-        return arData;
     }
 }
