@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./styles.scss";
 import { MovieCard } from "../MovieCard";
-import { MovieCollection, MovieItem } from "../../../interfaces/main.interface";
+import { MovieCollection, MovieItem } from "../../../interfaces/main";
 
 interface ComponentProps {
     itemRows: Array<MovieItem[]>

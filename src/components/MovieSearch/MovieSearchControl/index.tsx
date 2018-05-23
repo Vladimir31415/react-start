@@ -2,8 +2,10 @@ import React from "react";
 import './styles.scss';
 import { Search } from "../Search";
 import {NetflixLabel} from '../../NetflixLabel'
-
-export class MovieSearchControl extends React.Component {
+interface ComponentProps {
+    cbRequest: Function;
+}
+export class MovieSearchControl extends React.Component<ComponentProps, any> {
     render() {
         return (
         <header className="p-4">
@@ -13,7 +15,7 @@ export class MovieSearchControl extends React.Component {
                         <NetflixLabel/>
                     </div>
                 </div>
-                <Search/>
+                <Search cbRequest={this.props.cbRequest}/>
             </div>         
         </header>
     )}

@@ -19,3 +19,10 @@ export interface MovieCollection {
     offset: number;
     limit:  number;
 }
+
+export type sTitle = 'title';
+export type sGenres = 'genres';
+export interface QueryParams {
+    search: string;
+    searchBy: sTitle | sGenres;
+}

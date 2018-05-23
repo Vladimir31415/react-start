@@ -1,6 +1,6 @@
 import React from "react";
 import './styles.scss';
-import { MovieItem } from "../../../interfaces/main.interface";
+import { MovieItem } from "../../../interfaces/main";
 import { MovieGenre } from "../MovieGenre";
 
 interface ComponentProps {
