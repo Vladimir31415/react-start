@@ -1,6 +1,6 @@
 import React from "react";
 import './styles.scss';
-import { sGenres, sTitle } from "../../../interfaces/main";
+import { sTitle, sGenres } from "../../interfaces/main";
 
 interface ComponentProps {
     onChange: Function;

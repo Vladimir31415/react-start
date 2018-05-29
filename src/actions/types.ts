@@ -1,0 +1,3 @@
+export const FETCH_MOVIES = 'FETCH_POSTS';
+
+export const SET_SEARCH_STRING = 'SET_SEARCH_STRING';

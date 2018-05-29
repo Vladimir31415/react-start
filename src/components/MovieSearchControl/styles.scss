@@ -1,11 +1,11 @@
-@import "../../../styles/main.scss";
+@import "../../styles/main.scss";
 
 header {
 	position: relative;
     color: $white;
     
     &:after {
-        background-image: url('../../../assets/images/july-netflix.jpg');
+        background-image: url('../../assets/images/july-netflix.jpg');
         width: 100%;
         height: 100%;
         content: "";

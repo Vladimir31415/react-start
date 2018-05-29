@@ -1,38 +1,41 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import './styles.scss';
+import { sTitle, sGenres } from "../../interfaces/main";
 import { SearchBy } from "../SearchBy";
-import { sGenres, sTitle } from "../../../interfaces/main";
+import { connect, dispatch } from "react-redux";
+import { MoviesState } from "../../interfaces/state";
+import { setSearchString, fetchMovies } from "../../actions/movies";
+import { SET_SEARCH_STRING } from "../../actions/types";
 
 interface ComponentProps {
     cbRequest: Function;
+    search: string;
+    setSearchString: Function;
+    dispatch: Function;
 }
 
 interface ComponentState {
-    search: string;
     searchBy: sTitle | sGenres;
 }
 
-export class Search extends React.Component<ComponentProps, ComponentState> {
-    private readonly sTITLE = 'title';
+class Search extends React.Component<ComponentProps, ComponentState> {  
+
     constructor(props:ComponentProps) {
         super(props);
         this.state = {
-            search: '',
-            searchBy: this.sTITLE
+            searchBy: 'title'
         }
     }
     public submit() {
-        this.props.cbRequest({search: this.state.search, searchBy: this.state.searchBy});
+        this.props.cbRequest();
     }
 
-    public updateSearch(event) {
-        this.setState({search: event.target.value})
-    }
     public updateSearchBy(by: sTitle | sGenres) {
         this.setState({searchBy: by});
     }
 
     public render() {
+        var {dispatch} = this.props;
         return (
             <React.Fragment>
                 <div className="row">
@@ -40,7 +43,9 @@ export class Search extends React.Component<ComponentProps, ComponentState> {
                                 <label htmlFor="movie-search" className="font-weight-bold">FIND YOUR MOVIE</label>
                                 <div className="input-group mb-3">
                                     <input type="text" className="form-control" id="movie-search" 
-                                        value={this.state.search} onChange={this.updateSearch.bind(this)}/>
+                                        defaultValue={this.props.search} onChange={(e) => {
+                                            dispatch(setSearchString(e.target.value))
+                                        }}/>
                                 </div>
                         </div>
                 </div>
@@ -49,9 +54,11 @@ export class Search extends React.Component<ComponentProps, ComponentState> {
                             <SearchBy by={this.state.searchBy} onChange={this.updateSearchBy.bind(this)}/>
                         </div>
                         <div className="col-sm-6 text-right">
-                            <button onClick={this.submit.bind(this)} type="button" className="btn btn-primary px-5">SEARCH</button>
+                            <button onClick={() => dispatch(fetchMovies())} type="button" className="btn btn-primary px-5">SEARCH</button>
                         </div>
                 </div>
             </React.Fragment>        
     )}
 }
+
+export default connect()(Search);

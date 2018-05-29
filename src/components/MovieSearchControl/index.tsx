@@ -1,7 +1,9 @@
 import React from "react";
 import './styles.scss';
-import { Search } from "../Search";
-import {NetflixLabel} from '../../NetflixLabel'
+import { NetflixLabel } from "../NetflixLabel";
+import Search from '../Search';
+
+
 interface ComponentProps {
     cbRequest: Function;
 }

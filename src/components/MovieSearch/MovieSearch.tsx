@@ -1,42 +1,46 @@
 import React from "react";
-import {MovieSearchControl} from './MovieSearchControl';
-import {MovieSearchResults} from './MovieSearchResults'
 import {Footer} from '../Footer';
-import { MovieCollection, MovieItem, QueryParams } from "../../interfaces/main";
+import { MovieCollection, MovieItem } from "../../interfaces/main";
 import { fetch2 } from "../../helpers/fetch";
+import { MovieSearchControl } from "../MovieSearchControl";
+import { MovieSearchResults } from "../MovieSearchResults";
+import { connect } from 'react-redux';
+import { fetchMovies } from "../../actions/movies";
+import store from "../../store";
 
 interface ComponentState {
-	collection: Array<MovieItem[]>
+	columnedData: Array<MovieItem[]>
 }
-
-export class MovieSearch extends React.Component<any, ComponentState> {
+class MovieSearch extends React.Component<any, ComponentState> {
 	public columns = 3; 
     public collection: MovieCollection;
-    public promise$: Promise<MovieCollection>;
-    constructor(props:any) {
-		super(props);
-		this.state = {
-			collection: []
-		}
+    constructor(params) {
+        super(params);
+        this.state = {
+            columnedData: []
+        }
+    }
+    
+    public componentWillMount() {
         this.requestData();
     }
 
-    public requestData(params?: QueryParams) {
-        fetch2('http://react-cdp-api.herokuapp.com/movies', {queryParams:params})
-            .then((res: Response) => res.json())
+    public requestData() {
+        this.props.fetchMovies()
             .then((collection: MovieCollection) => {
-				const data = this.divideIntoColumns(collection.data, this.columns);
-				console.log(data);
-
-                this.setState({collection: data});
-            })
-	}
+                this.collection = store.getState().movies.collection;
+                const data = this.divideIntoColumns(this.collection.data, this.columns);
+                this.setState({
+                    columnedData:data 
+                })
+            });     
+    }
 	
     render() {
         return (
 			<React.Fragment>	
 				<MovieSearchControl cbRequest={this.requestData.bind(this)}/>			
-				<MovieSearchResults itemRows={this.state.collection}/>	
+				<MovieSearchResults itemRows={this.state.columnedData}/>	
 				<Footer/>
 			</React.Fragment>
         );
@@ -51,3 +55,14 @@ export class MovieSearch extends React.Component<any, ComponentState> {
         return arData;
     }
 }
+
+const mapStateToProps = state => { return {
+    moviesList: state.movies.items
+}}
+
+
+const mapDispatchToProps = {
+    fetchMovies
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieSearch); 
