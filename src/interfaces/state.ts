@@ -9,7 +9,12 @@ export interface MovieFilter {
 
 export interface MoviesState {
     movies: {
-        collection: Array<MovieItem[]>;
+        collection: {
+            data: Array<MovieItem>;
+            limit: number;
+            offset: number;
+            total: number;
+        }
         filter: MovieFilter;
     }
 }

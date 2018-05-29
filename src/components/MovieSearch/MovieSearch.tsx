@@ -7,6 +7,7 @@ import { MovieSearchResults } from "../MovieSearchResults";
 import { connect } from 'react-redux';
 import { fetchMovies } from "../../actions/movies";
 import store from "../../store";
+import { MoviesState } from "../../interfaces/state";
 
 interface ComponentState {
 	columnedData: Array<MovieItem[]>
@@ -19,21 +20,32 @@ class MovieSearch extends React.Component<any, ComponentState> {
         this.state = {
             columnedData: []
         }
+        this.requestData();
     }
     
-    public componentWillMount() {
-        this.requestData();
+    public shouldComponentUpdate(nextProps) {
+        console.log(nextProps);
+        if(nextProps.moviesList != this.props.moviesList) {
+            this.processItems(nextProps.moviesList);
+            return true;
+        }
+        return false;
     }
 
     public requestData() {
         this.props.fetchMovies()
-            .then((collection: MovieCollection) => {
-                this.collection = store.getState().movies.collection;
-                const data = this.divideIntoColumns(this.collection.data, this.columns);
-                this.setState({
-                    columnedData:data 
-                })
-            });     
+            // .then((collection) => {
+            //     console.log(collection);
+                
+            //     this.processItems(collection)
+            // });     
+    }
+
+    public processItems(collection: MovieItem[]) {
+        const data = this.divideIntoColumns(collection, this.columns);
+        this.setState({
+            columnedData:data 
+        })
     }
 	
     render() {
@@ -56,8 +68,8 @@ class MovieSearch extends React.Component<any, ComponentState> {
     }
 }
 
-const mapStateToProps = state => { return {
-    moviesList: state.movies.items
+const mapStateToProps = (state:MoviesState) => { return {
+    moviesList: state.movies.collection.data
 }}
 
 
