@@ -1,20 +1,17 @@
-import { MovieItem, sGenres, sTitle } from "./main";
+import { MovieItem, searchBy, MoviesCollection, sortBy, sortOrder } from "./main";
 
 export interface MovieFilter {
     search: string;
-    searchBy: sTitle | sGenres;
+    searchBy: searchBy;
+    sortBy?: sortBy;
+    sortOrder: sortOrder;
     limit?: number;
     offset?: number;
 }
 
 export interface MoviesState {
     movies: {
-        collection: {
-            data: Array<MovieItem>;
-            limit: number;
-            offset: number;
-            total: number;
-        }
+        collection: MoviesCollection;
         filter: MovieFilter;
     }
 }

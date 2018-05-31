@@ -1,0 +1,9 @@
+@import "../../styles/main.scss";
+
+.sortBy {
+    label.active {
+        color: $primary;
+        box-shadow: none;
+        font-weight: bold;
+    }
+}
