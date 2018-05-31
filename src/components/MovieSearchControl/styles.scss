@@ -16,3 +16,9 @@ header {
         filter: brightness(20%);
     }
 }
+
+.status-bar {
+    background: $light-grey;
+    display: flex;
+    align-items: center;
+}

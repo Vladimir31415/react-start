@@ -30,13 +30,11 @@ export class MovieSearchResults extends React.Component<ComponentProps, any> {
                 </div>)
         })
         return (
-            <React.Fragment>
-                <section className="search-results p-4">
-                    <div className="container">
-                        {movieCards}
-                    </div>
-                </section>
-            </React.Fragment>
+            <section className="search-results p-4">
+                <div className="container">
+                    {movieCards}
+                </div>
+            </section>
         )
     }
 }

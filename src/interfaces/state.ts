@@ -1,6 +1,6 @@
 import { MovieItem, searchBy, MoviesCollection, sortBy, sortOrder } from "./main";
 
-export interface MovieFilter {
+export interface FilterState {
     search: string;
     searchBy: searchBy;
     sortBy?: sortBy;
@@ -12,6 +12,6 @@ export interface MovieFilter {
 export interface MoviesState {
     movies: {
         collection: MoviesCollection;
-        filter: MovieFilter;
+        filter: FilterState;
     }
 }

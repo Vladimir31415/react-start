@@ -24,7 +24,6 @@ class MovieSearch extends React.Component<any, ComponentState> {
     }
     
     static getDerivedStateFromProps(nextProps) {
-        console.log(nextProps);
         return ((nextProps.moviesList && nextProps.moviesList.length) ? 
             {moviesList: MovieSearch.divideIntoColumns(nextProps.moviesList, 3)} : null)
     }

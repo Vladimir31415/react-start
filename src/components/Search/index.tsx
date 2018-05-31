@@ -6,6 +6,7 @@ import { MoviesState } from "../../interfaces/state";
 import { setSearchString, fetchMovies } from "../../actions/movies";
 import { SET_SEARCH_STRING } from "../../actions/types";
 import SearchBy from "../SearchBy";
+import SearchControl from '../SearchControl';
 
 interface ComponentProps {
     search: string;
@@ -39,10 +40,7 @@ class Search extends React.Component<ComponentProps, ComponentState> {
                     <div className="col-sm-12">
                         <label htmlFor="movie-search" className="font-weight-bold">FIND YOUR MOVIE</label>
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" id="movie-search"
-                                onKeyPress={this.handleKeyPress.bind(this)}
-                                defaultValue={this.props.search} 
-                                onChange={this.setSearchString.bind(this)}/>
+                            <SearchControl/>
                         </div>
                     </div>
                 </div>

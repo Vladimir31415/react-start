@@ -8,9 +8,9 @@ export class Footer extends React.Component {
             <footer className="p-2">
                 <div className="container">
                     <div className="row">
-                            <div className="col-sm-12">
-                                <NetflixLabel/>
-                            </div>
+                        <div className="col-sm-12">
+                            <NetflixLabel/>
+                        </div>
                     </div>
                 </div>
             </footer>

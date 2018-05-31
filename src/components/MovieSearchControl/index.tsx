@@ -22,7 +22,7 @@ export class MovieSearchControl extends React.Component<any, any> {
                 </div>         
             </header>
             <div className="container">
-                <div className="row">
+                <div className="row status-bar">
                     <div className="col-sm-6">
                         <Total/>
                     </div>

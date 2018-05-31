@@ -21,15 +21,15 @@ export class SortBy extends React.Component<ComponentProps, ComponentState> {
     public render() {
         return (
             <div className="sortBy">
-                <label>Sort by: </label>
+                <label className="btn sort-label">Sort by: </label>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
                     <label className={"btn " + (this.props.by === SortByOptions.Release ? 'active' : '')}
-                        onClick={this.sortByProp.bind(this, 'release_date')}>
-                        <input type="radio" name="sortBy" value="release_date"/> Release date
+                        onClick={this.sortByProp.bind(this, SortByOptions.Release)}>
+                        <input type="radio" name="sortBy" value={SortByOptions.Release}/> Release date
                     </label>
                     <label className={"btn " + (this.props.by === SortByOptions.Rating ? 'active' : '')}
-                        onClick={this.sortByProp.bind(this, 'vote_average')}>
-                        <input type="radio" name="sortBy" value="vote_average" 
+                        onClick={this.sortByProp.bind(this, SortByOptions.Rating)}>
+                        <input type="radio" name="sortBy" value={SortByOptions.Rating} 
                         onChange={this.sortByProp.bind(this)}/> Rating
                     </label>
                 </div>

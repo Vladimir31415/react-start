@@ -29,20 +29,16 @@ export const setSearchBy = (searchString: searchBy) => dispatch => {
     })
 }
 
+const setSortByAction = (sortBy:sortBy) => {return {type: SET_SORT_BY, payload: sortBy}};
+
 export const setSortBy = (sortBy: sortBy) => dispatch => {
-    dispatch({
-        type: SET_SORT_BY,
-        payload: sortBy
-    })
+    dispatch(setSortByAction(sortBy))
 }
 
-export const sortByProp = (sortString: sortBy) => dispatch => {
+export const sortByProp = (sortBy: sortBy) => dispatch => {
     dispatch({
         type: SORT_BY,
-        payload: sortString
+        payload: sortBy
     });
-    dispatch({
-        type: SET_SORT_BY,
-        payload: sortString
-    })
+    dispatch(setSortByAction(sortBy));
 }
