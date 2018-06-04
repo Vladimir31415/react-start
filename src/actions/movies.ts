@@ -1,9 +1,11 @@
 import { fetch2 } from "../helpers/fetch";
-import { FETCH_MOVIES, FETCH_MOVIE_BY_ID } from "./types";
+import { FETCH_MOVIES, FETCH_MOVIE_BY_ID, FETCH_MOVIE_BY_SAME_GENRE } from "./types";
+import { MovieItem, SearchByOptions } from "../interfaces/main";
+import { FilterState } from "../interfaces/state";
 
 
 export const fetchMovies = () => (dispatch, getState) => {
-    const filter = getState().movies.filter;
+    const filter: FilterState = getState().movies.filter;
     return fetch2('http://react-cdp-api.herokuapp.com/movies', {queryParams:filter})
         .then(res => res.json())
         .then(res => {
@@ -15,14 +17,25 @@ export const fetchMovies = () => (dispatch, getState) => {
 }
 
 export const fetchMovieById = (id: string) => (dispatch, getState) => {
-    console.log(id);
     return fetch2('http://react-cdp-api.herokuapp.com/movies/' + id)
         .then(res => res.json())
-        .then(res => {
+        .then((res: MovieItem) => {
             dispatch({
                 type: FETCH_MOVIE_BY_ID,
                 payload: res
             })
-            return res;
+            const filter: FilterState = {
+                searchBy: SearchByOptions.Genres,
+                search: res.genres[0],
+                limit: getState().movies.filter.limit
+            }
+            return fetch2('http://react-cdp-api.herokuapp.com/movies', {queryParams:filter})
+        })
+        .then(res => res.json())
+        .then(res => {
+            dispatch({
+                type: FETCH_MOVIE_BY_SAME_GENRE,
+                payload: res
+            })
         })    
 }

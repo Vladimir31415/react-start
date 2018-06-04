@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { fetchMovies } from "../../actions/movies";
 import store from "../../store";
 import { MoviesState } from "../../interfaces/state";
+import { divideIntoColumns } from "../../helpers/columnDivider"
 
 interface ComponentProps {
     fetchMovies:() => void;
@@ -28,7 +29,7 @@ class MovieSearch extends React.Component<ComponentProps, ComponentState> {
     
     static getDerivedStateFromProps(nextProps) {
         return ((nextProps.moviesList && nextProps.moviesList.length) ? 
-            {moviesList: MovieSearch.divideIntoColumns(nextProps.moviesList, 3)} : null)
+            {moviesList: divideIntoColumns(nextProps.moviesList, 3)} : null)
     }
 	
     render() {
@@ -40,15 +41,6 @@ class MovieSearch extends React.Component<ComponentProps, ComponentState> {
 			</React.Fragment>
         );
 	}
-	
-	static divideIntoColumns(data: MovieItem[], cols: number) {
-        let arData: Array<MovieItem[]> = [];
-        const rows = data.length / cols;
-        for(let row = 0; row < rows; row++) {
-            arData.push(data.filter((val, ind) => ind >= row*cols && ind < row*cols+cols));
-        } 
-        return arData;
-    }
 }
 
 const mapStateToProps = (state:MoviesState) => { return {

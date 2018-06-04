@@ -14,15 +14,4 @@
         z-index: -1;
         filter: brightness(20%);
     }
-
-
-    .card-details {
-        background: none;
-        color: $white;
-
-        .rating-badge {
-            border-radius: 30px;
-            border: 1px solid $white;
-        }
-    }
 }

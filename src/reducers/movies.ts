@@ -1,10 +1,11 @@
-import { FETCH_MOVIES, SET_SEARCH_STRING, SET_SEARCH_BY, SORT_BY, SET_SORT_BY } from "../actions/types";
+import { FETCH_MOVIES, SET_SEARCH_STRING, SET_SEARCH_BY, SORT_BY, SET_SORT_BY, FETCH_MOVIE_BY_ID, FETCH_MOVIE_BY_SAME_GENRE } from "../actions/types";
 import { log } from "util";
-import { MoviesState } from "../interfaces/state";
-import { MoviesCollection, SearchByOptions, SortByOptions, SortOrderOptions} from "../interfaces/main";
+import { MoviesState, MovieItemState } from "../interfaces/state";
+import { MoviesCollection, SearchByOptions, SortByOptions, SortOrderOptions, MovieItem} from "../interfaces/main";
 import sortingFunc from "../helpers/sorting";
 
 const initialState = {
+    currentItem: {},
     collection: {} as MoviesCollection,
     filter: {
         limit: 9,
@@ -23,6 +24,20 @@ export default function(state = initialState, action) {
                 ...state,
                 collection: action.payload
             }
+
+        case FETCH_MOVIE_BY_ID:
+            return {
+                ...state,
+                currentItem: action.payload
+            }
+
+        case FETCH_MOVIE_BY_SAME_GENRE:
+            const fNewState = {...state};
+            fNewState.currentItem = {
+                ...state.currentItem,
+                sameGenreCollection: action.payload
+            }
+            return fNewState;
         
         case SET_SEARCH_STRING:
             filter = {...state.filter, search: action.payload}
