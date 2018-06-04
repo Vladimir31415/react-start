@@ -2,8 +2,8 @@ import React from "react";
 import './styles.scss';
 import {connect} from 'react-redux';
 import { sortBy, SortByOptions } from "../../interfaces/main";
-import { sortByProp, setSortBy } from "../../actions/movies";
 import { MoviesState } from "../../interfaces/state";
+import { sortByProp } from "../../actions/filter";
 
 interface ComponentProps {
     sortBy: (by: sortBy) => void;

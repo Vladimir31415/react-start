@@ -1,0 +1,28 @@
+@import "../../styles/custom.scss";
+
+.movie-details {
+    position: relative;
+
+    &:after {
+        background-image: url('../../assets/images/july-netflix.jpg');
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        filter: brightness(20%);
+    }
+
+
+    .card-details {
+        background: none;
+        color: $white;
+
+        .rating-badge {
+            border-radius: 30px;
+            border: 1px solid $white;
+        }
+    }
+}

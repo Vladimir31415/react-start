@@ -1,8 +1,9 @@
 import React, { SyntheticEvent } from "react";
 import { MoviesState } from "../../interfaces/state";
 import { searchBy } from "../../interfaces/main";
-import { setSearchBy, setSearchString, fetchMovies } from "../../actions/movies";
+import { fetchMovies } from "../../actions/movies";
 import {connect} from 'react-redux';
+import { setSearchString } from "../../actions/filter";
 
 interface ComponentProps {
    setSearchString: (string) => void;

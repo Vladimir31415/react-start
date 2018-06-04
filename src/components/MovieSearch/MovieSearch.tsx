@@ -9,10 +9,13 @@ import { fetchMovies } from "../../actions/movies";
 import store from "../../store";
 import { MoviesState } from "../../interfaces/state";
 
+interface ComponentProps {
+    fetchMovies:() => void;
+}
 interface ComponentState {
 	moviesList: Array<MovieItem[]>
 }
-class MovieSearch extends React.Component<any, ComponentState> {
+class MovieSearch extends React.Component<ComponentProps, ComponentState> {
 	public columns = 3; 
     public collection: MoviesCollection;
     constructor(params) {
@@ -30,7 +33,7 @@ class MovieSearch extends React.Component<any, ComponentState> {
 	
     render() {
         return (
-			<React.Fragment>	
+			<React.Fragment>  	
 				<MovieSearchControl/>			
 				<MovieSearchResults itemRows={this.state.moviesList}/>	
 				<Footer/>

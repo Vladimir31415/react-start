@@ -2,9 +2,9 @@ import React from "react";
 import './styles.scss';
 import { searchBy, SearchByOptions } from "../../interfaces/main";
 import { connect, dispatch } from "react-redux";
-import { setSearchBy } from "../../actions/movies";
 import { SET_SEARCH_BY } from "../../actions/types";
 import { MoviesState } from "../../interfaces/state";
+import { setSearchBy } from "../../actions/filter";
 
 interface ComponentProps {
     setSearchBy: (prop: searchBy) => void;

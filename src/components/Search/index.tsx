@@ -3,10 +3,11 @@ import './styles.scss';
 import { searchBy } from "../../interfaces/main";
 import { connect, dispatch } from "react-redux";
 import { MoviesState } from "../../interfaces/state";
-import { setSearchString, fetchMovies } from "../../actions/movies";
+import { fetchMovies } from "../../actions/movies";
 import { SET_SEARCH_STRING } from "../../actions/types";
 import SearchBy from "../SearchBy";
 import SearchControl from '../SearchControl';
+import { setSearchString } from "../../actions/filter";
 
 interface ComponentProps {
     search: string;

@@ -1,7 +1,6 @@
-import { FETCH_MOVIES, SET_SEARCH_STRING, SET_SEARCH_BY, SORT_BY, SET_SORT_BY } from "./types";
 import { fetch2 } from "../helpers/fetch";
-import { log } from "util";
-import { searchBy, sortBy } from "../interfaces/main";
+import { FETCH_MOVIES, FETCH_MOVIE_BY_ID } from "./types";
+
 
 export const fetchMovies = () => (dispatch, getState) => {
     const filter = getState().movies.filter;
@@ -15,30 +14,15 @@ export const fetchMovies = () => (dispatch, getState) => {
         })    
 }
 
-export const setSearchString = (searchString: string) => dispatch => {
-    dispatch({
-        type: SET_SEARCH_STRING,
-        payload: searchString
-    })
-}
-
-export const setSearchBy = (searchString: searchBy) => dispatch => {
-    dispatch({
-        type: SET_SEARCH_BY,
-        payload: searchString
-    })
-}
-
-const setSortByAction = (sortBy:sortBy) => {return {type: SET_SORT_BY, payload: sortBy}};
-
-export const setSortBy = (sortBy: sortBy) => dispatch => {
-    dispatch(setSortByAction(sortBy))
-}
-
-export const sortByProp = (sortBy: sortBy) => dispatch => {
-    dispatch({
-        type: SORT_BY,
-        payload: sortBy
-    });
-    dispatch(setSortByAction(sortBy));
+export const fetchMovieById = (id: string) => (dispatch, getState) => {
+    console.log(id);
+    return fetch2('http://react-cdp-api.herokuapp.com/movies/' + id)
+        .then(res => res.json())
+        .then(res => {
+            dispatch({
+                type: FETCH_MOVIE_BY_ID,
+                payload: res
+            })
+            return res;
+        })    
 }
