@@ -20,8 +20,15 @@ class MovieDetailsInfo extends React.Component<ComponentProps, ComponentState> {
 
     public componentDidMount() {
         const {movie, fetchMovie, match } = this.props;
-        console.log(this.props);
         fetchMovie(match.params.id);
+    }
+
+    static getDerivedStateFromProps(props) {
+        const {fetchMovie, match, movie} = props;
+        if (match.params.id != movie.id) {
+            fetchMovie(match.params.id);
+        }
+        return null;
     }
 
     public render() {

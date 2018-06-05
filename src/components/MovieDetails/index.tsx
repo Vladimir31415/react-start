@@ -8,6 +8,7 @@ import { fetchMovieById } from "../../actions/movies";
 import MovieDetailsInfo from '../MovieDetailsInfo';
 import { MovieDetailsHeader } from "../MovieDetailsHeader";
 import SameGenre from "../SameGenre";
+import { Footer } from "../Footer";
 
 interface ComponentProps extends RouteComponentProps<any>{
     movie: MovieItem;
@@ -16,11 +17,10 @@ interface ComponentProps extends RouteComponentProps<any>{
 
 interface ComponentState {}
 
-class MovieDetails extends React.Component<ComponentProps, ComponentState> {
+export class MovieDetails extends React.Component<ComponentProps, ComponentState> {
 
     public render() {
-        const movie = this.props.movie ? this.props.movie : {} as MovieItem; 
-        return ( this.props.movie ?
+        return (
             <React.Fragment>
                 <div className="movie-details p-4">
                     <div className="container">
@@ -30,22 +30,9 @@ class MovieDetails extends React.Component<ComponentProps, ComponentState> {
                         </div>
                     </div>
                 </div>
-                <SameGenre/>   
-            </React.Fragment> : null
+                <SameGenre/> 
+                <Footer/>  
+            </React.Fragment>
         )
     }
 }
-
-const mapStateToProps = (state: MoviesState) => {
-    return {
-        movie: state.movies.currentItem
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchMovie:(id: string) => dispatch(fetchMovieById(id))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails)

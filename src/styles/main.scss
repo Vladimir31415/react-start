@@ -1,2 +1,11 @@
 @import "custom";
 @import "~bootstrap/scss/bootstrap";
+
+a {
+    text-decoration: none;
+    color: $black;
+}
+
+a:hover {
+    text-decoration: none;
+}

@@ -8,7 +8,7 @@ import  store from './store';
 import {HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import { App } from "./components/App";
 import { fetchMovieById } from "./actions/movies";
-import MovieDetails from '../src/components/MovieDetails';
+import {MovieDetails} from '../src/components/MovieDetails';
 
 ReactDOM.render(
     <Provider store={store}>

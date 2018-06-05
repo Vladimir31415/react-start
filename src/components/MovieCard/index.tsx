@@ -13,9 +13,9 @@ export class MovieCard extends React.Component<ComponentProps, any> {
         const item: MovieItem = this.props.item; 
         return (
             <div className="card">
-                <Link to={'/movie/'+ this.props.item.id}>
+                <Link replace to={'/movie/'+ this.props.item.id}>
                     <img className="card-img-top" src={item.poster_path} alt="Card image cap" />
-                    <div className="card-body">
+                    <div className="card-body text-black">
                         <div className="card-title text-uppercase font-weight-bold">
                             {item.title}
                         </div>
