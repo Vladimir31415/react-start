@@ -6,6 +6,7 @@ import { MoviesState } from '../../interfaces/state';
 import { MovieSearchResults } from '../MovieSearchResults';
 import { MoviesCollection, MovieItem } from '../../interfaces/main';
 import { SameGenreToolbar } from '../SameGenreToolbar';
+import { Spinner } from '../Spinner';
 
 interface ComponentProps {
     sameGenreList: MovieItem[][];
@@ -25,7 +26,7 @@ class SameGenre extends React.Component<ComponentProps, ComponentState> {
                 <SameGenreToolbar genre={this.props.currentItem.genres[0]}/>
                 <MovieSearchResults itemRows={this.props.sameGenreList}/>
             </React.Fragment>
-        : null)
+        : <Spinner/>)
     }
 }
 
