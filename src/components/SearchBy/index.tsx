@@ -48,7 +48,7 @@ export class SearchBy extends React.Component<ComponentProps, ComponentState> {
 
 const mapStateToProps = (state:MoviesState) => {
     return {
-        searchBy: state.movies.filter.searchBy
+        searchBy: state.filter.searchBy
     }
 }
 

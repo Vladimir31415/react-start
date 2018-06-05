@@ -5,7 +5,7 @@ import { FilterState } from "../interfaces/state";
 
 
 export const fetchMovies = () => (dispatch, getState) => {
-    const filter: FilterState = getState().movies.filter;
+    const filter: FilterState = getState().filter;
     return fetch2('http://react-cdp-api.herokuapp.com/movies', {queryParams:filter})
         .then(res => res.json())
         .then(res => {
@@ -27,7 +27,7 @@ export const fetchMovieById = (id: string) => (dispatch, getState) => {
             const filter: FilterState = {
                 searchBy: SearchByOptions.Genres,
                 search: res.genres[0],
-                limit: getState().movies.filter.limit
+                limit: getState().filter.limit
             }
             return fetch2('http://react-cdp-api.herokuapp.com/movies', {queryParams:filter})
         })

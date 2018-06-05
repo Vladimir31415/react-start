@@ -40,7 +40,7 @@ export class SortBy extends React.Component<ComponentProps, ComponentState> {
 
 const mapStateToProps = (state: MoviesState) => {
     return {
-        by: state.movies.filter.sortBy
+        by: state.filter.sortBy
     }
 }
 

@@ -7,13 +7,6 @@ import sortingFunc from "../helpers/sorting";
 const initialState = {
     currentItem: {},
     collection: {} as MoviesCollection,
-    filter: {
-        limit: 9,
-        searchBy: SearchByOptions.Title,
-        sortBy: SortByOptions.Rating,
-        sortOrder: SortOrderOptions.desc,
-        search: ''
-    }
 }
 
 export default function(state = initialState, action) {
@@ -38,28 +31,6 @@ export default function(state = initialState, action) {
                 sameGenreCollection: action.payload
             }
             return fNewState;
-        
-        case SET_SEARCH_STRING:
-            filter = {...state.filter, search: action.payload}
-            return {
-                ...state,
-                filter
-            }
-
-        case SET_SEARCH_BY:
-            filter = {...state.filter, searchBy: action.payload}
-            return {
-                ...state,
-                filter
-            }
-
-        case SET_SORT_BY: {
-            filter = {...state.filter, sortBy: action.payload}
-            return {
-                ...state,
-                filter
-            }
-        }
 
         case SORT_BY: 
             const newState = {...state};

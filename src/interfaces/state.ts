@@ -17,6 +17,6 @@ export interface MoviesState {
     movies: {
         currentItem: MovieItemState
         collection: MoviesCollection;
-        filter: FilterState;
     }
+    filter: FilterState
 }

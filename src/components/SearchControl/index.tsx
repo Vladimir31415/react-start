@@ -38,7 +38,7 @@ class SearchControl extends React.Component<ComponentProps, ComponentState> {
 
 const mapStateToProps = (state:MoviesState) => {
     return {
-        search: state.movies.filter.search
+        search: state.filter.search
     }
 }
 
