@@ -10,7 +10,7 @@ import { App } from "./components/App";
 import { fetchMovieById } from "./actions/movies";
 import {MovieDetails} from '../src/components/MovieDetails';
 
-ReactDOM.render(
+ReactDOM.hydrate(
     <Provider store={store}>
         <Router>
             <App>
