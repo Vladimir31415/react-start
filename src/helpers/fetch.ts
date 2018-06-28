@@ -1,22 +1,24 @@
+import isoFetch from 'isomorphic-fetch';
+
 interface FetchOpts extends RequestInit{
     queryParams?: any
 }
 
-export function fetch2(url, options?:FetchOpts) {
-    options = {
-        // your default options
-        credentials: 'same-origin',
-        redirect: 'error',
-        ...options,
-    };
+// export function fetch2(url, options?:FetchOpts) {
+//     options = {
+//         // your default options
+//         credentials: 'same-origin',
+//         redirect: 'error',
+//         ...options,
+//     };
 
-    if(options.queryParams) {
-        url += (url.indexOf('?') === -1 ? '?' : '&') + queryParams(options.queryParams);
-        delete options.queryParams;
-    }
+//     if(options.queryParams) {
+//         url += (url.indexOf('?') === -1 ? '?' : '&') + queryParams(options.queryParams);
+//         delete options.queryParams;
+//     }
 
-    return fetch(url, options);
-}
+//     return isoFetch(url, options);
+// }
 
 function queryParams(params) {
     return Object.keys(params)

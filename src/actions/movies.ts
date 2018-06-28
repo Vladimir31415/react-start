@@ -1,8 +1,9 @@
-import { fetch2 } from "../helpers/fetch";
 import { FETCH_MOVIES, FETCH_MOVIE_BY_ID, FETCH_MOVIE_BY_SAME_GENRE } from "./types";
 import { MovieItem, SearchByOptions } from "../interfaces/main";
 import { FilterState } from "../interfaces/state";
+declare var require: Function;
 
+const fetch2 = require('isomorphic-fetch');
 
 export const fetchMovies = () => (dispatch, getState) => {
     const filter: FilterState = getState().filter;

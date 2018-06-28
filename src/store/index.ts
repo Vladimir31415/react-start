@@ -3,14 +3,18 @@ import { createStore } from 'redux';
 import { applyMiddleware } from 'redux';
 import rootReducer from '../reducers';
 
-const initialState = {};
+// const initialState = {};
 
 const middleware = [thunk];
 
-const store = createStore(
-    rootReducer,
-    initialState,
-    applyMiddleware(...middleware)
-);
+function configureStore(initialState) {
+    const store = createStore(
+        rootReducer,
+        initialState,
+        applyMiddleware(...middleware)
+    );
+    
+    return store;
+}
 
-export default store;
+export default configureStore;

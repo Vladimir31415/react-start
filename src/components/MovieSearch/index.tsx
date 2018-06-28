@@ -1,7 +1,6 @@
 import React from "react";
 import {Footer} from '../Footer';
 import { MoviesCollection, MovieItem } from "../../interfaces/main";
-import { fetch2 } from "../../helpers/fetch";
 import { MovieSearchControl } from "../MovieSearchControl";
 import { MovieSearchResults } from "../MovieSearchResults";
 import { connect } from 'react-redux';
